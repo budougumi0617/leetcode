@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /*
  * @lc app=leetcode id=189 lang=golang
  *
@@ -65,6 +63,7 @@ import "fmt"
 func rotate(nums []int, k int) {
 	// use 'Approach 3: Using Cyclic Replacements'
 	k %= len(nums)
+
 	var count int
 
 	for s := 0; count < len(nums); s++ {
@@ -79,30 +78,12 @@ func rotate(nums []int, k int) {
 			current = n
 			count++
 
-			if s != current {
+			// 開始地点に戻ってきていたら、循環したということ。
+			if s == current {
 				break
 			}
 		}
-		fmt.Printf("current %v\n", nums)
 	}
 }
-
-//   public void rotate(int[] nums, int k) {
-//     k = k % nums.length;
-//     int count = 0;
-//     for (int start = 0; count < nums.length; start++) {
-//       int current = start;
-//       int prev = nums[start];
-//       do {
-//         int next = (current + k) % nums.length;
-//         int temp = nums[next];
-//         nums[next] = prev;
-//         prev = temp;
-//         current = next;
-//         count++;
-//       } while (start != current);
-//     }
-//   }
-// }
 
 // @lc code=end
