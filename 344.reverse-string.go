@@ -1,3 +1,5 @@
+package main
+
 /*
  * @lc app=leetcode id=344 lang=golang
  *
@@ -52,4 +54,3 @@ func reverseString(s []byte) {
 }
 
 // @lc code=end
-
