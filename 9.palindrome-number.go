@@ -1,6 +1,6 @@
 package main
 
-func isPalindrome(x int) bool {
+func isPalindrome9(x int) bool {
 	// エッジケースは早期リターンする
 	if x < 0 || (x%10 == 0 && x != 0) {
 		return false
