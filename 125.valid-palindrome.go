@@ -49,8 +49,8 @@ import (
  */
 
 // @lc code=start
-func isLetter(r rune) bool {
-	if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') {
+func isAlphanumeric(r rune) bool {
+	if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') && (r < '0' || r > '9') {
 		return false
 	}
 	return true
@@ -61,29 +61,32 @@ func trim(s string) []byte {
 
 	c := 0
 	for i, r := range s {
-		if isLetter(r) {
+		if isAlphanumeric(r) {
 			b[c] = s[i]
 			c++
 		}
+	}
+	if c == 0 {
+		return []byte{}
 	}
 	b = b[:c]
 	return b
 }
 
 func isPalindrome(s string) bool {
-	if len(s) == 0 {
+	if len(s) < 2 {
 		return true
 	}
 	s = strings.ToLower(s)
 
 	b := trim(s)
-	if len(b) < 2 {
-		return false
+	if len(b) < 1 {
+		return true
 	}
 	// fmt.Printf("modified %q\n", b)
 	n := len(b) - 1
 
-	for i := 0; i < len(s)/2; i++ {
+	for i := 0; i < len(b)/2; i++ {
 		// fmt.Printf("%q vs %q\n", b[i], b[n])
 		if b[i] != b[n] {
 			return false
