@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -50,26 +49,49 @@ import (
  */
 
 // @lc code=start
+func isLetter(r rune) bool {
+	if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') {
+		return false
+	}
+	return true
+}
+
+func trim(s string) []byte {
+	b := make([]byte, len(s))
+
+	c := 0
+	for i, r := range s {
+		if isLetter(r) {
+			b[c] = s[i]
+			c++
+		}
+	}
+	b = b[:c]
+	return b
+}
+
 func isPalindrome(s string) bool {
 	if len(s) == 0 {
 		return true
 	}
-	s = strings.TrimSpace(s)
-	fmt.Printf("modified %q\n", s)
-	s = strings.Trim(s, " !&%$#:")
-	fmt.Printf("modified %q\n", s)
-	b := []byte(s)
-	n := len(s) - 1
-	fmt.Printf("modified %q\n", s)
+	s = strings.ToLower(s)
+
+	b := trim(s)
+	if len(b) < 2 {
+		return false
+	}
+	// fmt.Printf("modified %q\n", b)
+	n := len(b) - 1
 
 	for i := 0; i < len(s)/2; i++ {
+		// fmt.Printf("%q vs %q\n", b[i], b[n])
 		if b[i] != b[n] {
 			return false
 		}
 		n--
 	}
 
-	return false
+	return true
 }
 
 // @lc code=end
