@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /*
  * @lc app=leetcode id=36 lang=golang
  *
@@ -95,7 +93,6 @@ func isValidSudoku(board [][]byte) bool {
 		for j := 0; j < len(board); j++ {
 			if board[i][j] != '.' {
 				if (1 << board[i][j] & bitsRow) != 0 {
-					fmt.Printf("rows %d, %d : %q was false\n", i, j, board[i][j])
 					return false
 				}
 				bitsRow |= 1 << board[i][j]
@@ -103,7 +100,6 @@ func isValidSudoku(board [][]byte) bool {
 
 			if board[j][i] != '.' {
 				if (1 << board[j][i] & bitsColumn) != 0 {
-					fmt.Printf("column %d, %d : %q was false\n", j, i, board[j][i])
 					return false
 				}
 				bitsColumn |= 1 << board[j][i]
@@ -116,15 +112,12 @@ func isValidSudoku(board [][]byte) bool {
 			bitsRow := 0
 			for ii := 0; ii < 3; ii++ {
 				for jj := 0; jj < 3; jj++ {
-					fmt.Println("loop3")
 					iii := i + ii
 					jjj := j + jj
 					if board[iii][jjj] != '.' {
 						if (1 << board[iii][jjj] & bitsRow) != 0 {
-							fmt.Printf("matrix %d,%d %d %d: %q was false\n", i, ii, j, jj, board[iii][jjj])
 							return false
 						}
-						fmt.Printf("matrix %d, %d : %q was ok\n", iii, jjj, board[iii][jjj])
 						bitsRow |= 1 << board[iii][jjj]
 					}
 				}
