@@ -40,7 +40,15 @@ package main
  * }
  */
 func reverseList(head *ListNode) *ListNode {
-
+	var root *ListNode
+	next := head
+	for next != nil {
+		tmp := root
+		root = next
+		next = next.Next
+		root.Next = tmp
+	}
+	return root
 }
 
 // @lc code=end

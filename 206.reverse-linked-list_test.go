@@ -1,8 +1,9 @@
 package main
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 // Input: 1->2->3->4->5->NULL
@@ -54,8 +55,9 @@ func Test_reverseList(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := reverseList(tt.args.head); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("reverseList() = %v, want %v", got, tt.want)
+			got := reverseList(tt.args.head)
+			if d := cmp.Diff(got, tt.want); len(d) != 0 {
+				t.Errorf("differs: (-got +want)\n%s", d)
 			}
 		})
 	}
