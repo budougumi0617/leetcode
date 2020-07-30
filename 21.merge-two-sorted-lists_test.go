@@ -6,11 +6,6 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func Test_mergeTwoLists(t *testing.T) {
 	type args struct {
 		l1 *ListNode

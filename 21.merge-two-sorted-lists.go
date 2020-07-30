@@ -36,45 +36,26 @@ package main
  * }
  */
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
-	var res *ListNode
-	if l1 == nil && l2 == nil {
-		return nil
+	newList := &ListNode{}
+	out := newList
+	for l1 != nil && l2 != nil {
+		if l1.Val < l2.Val {
+			newList.Next = l1
+			l1 = l1.Next
+			newList = newList.Next
+		} else {
+			newList.Next = l2
+			l2 = l2.Next
+			newList = newList.Next
+		}
 	}
 	if l1 != nil {
-		if l2 != nil && l1.Val > l2.Val {
-			res = l2
-			l2 = l2.Next
-		} else {
-			res = l1
-			l1 = l1.Next
-		}
-	} else {
-		res = l2
-		l2 = l2.Next
+		newList.Next = l1
+	} else if l2 != nil {
+		newList.Next = l2
 	}
-	root := res
 
-	for {
-		if l1 != nil && l2 != nil {
-			// fmt.Printf("current status l1 %d, l2 %d\n", l1.Val, l2.Val)
-			if l1.Val > l2.Val {
-				res.Next = l2
-				l2 = l2.Next
-			} else {
-				res.Next = l1
-				l1 = l1.Next
-			}
-		} else if l1 != nil {
-			res.Next = l1
-			l1 = l1.Next
-		} else if l2 != nil {
-			res.Next = l2
-			l2 = l2.Next
-		} else {
-			return root
-		}
-		res = res.Next
-	}
+	return out.Next
 }
 
 // @lc code=end
