@@ -46,7 +46,22 @@ package main
  * }
  */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	return nil
+	ns := make([]*ListNode, 0, 10)
+	current := head
+	i := 0
+
+	for ; current != nil; i++ {
+		ns = append(ns, current)
+		current = current.Next
+	}
+
+	if n == 1 {
+		ns[i-n-1].Next = nil
+	} else {
+		ns[i-n-1].Next = ns[i-n+1]
+	}
+
+	return head
 }
 
 // @lc code=end
