@@ -65,9 +65,11 @@ package main
  * }
  */
 func deleteNode(node *ListNode) {
-	v := node.Next.Val
+	if node.Next == nil {
+		return
+	}
+	node.Val = node.Next.Val
 	node.Next = node.Next.Next
-	node.Val = v
 }
 
 // @lc code=end
