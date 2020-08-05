@@ -78,7 +78,22 @@ package main
  * }
  */
 func hasCycle(head *ListNode) bool {
-	return false
+	if head == nil {
+		return false
+	}
+	m := map[*ListNode]bool{}
+
+	for {
+		if head.Next == nil {
+			return false
+		}
+
+		if m[head] {
+			return true
+		}
+		m[head] = true
+		head = head.Next
+	}
 }
 
 // @lc code=end
