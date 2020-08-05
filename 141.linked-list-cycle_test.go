@@ -40,14 +40,22 @@ func Test_hasCycle(t *testing.T) {
 				pos: -1,
 			},
 		},
+		{
+			name: "empty",
+			args: args{
+				pos: -1,
+			},
+		},
 	}
 
 	for _, tt := range tests {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
-			l := findLast(tt.args.head)
-			p := findPos(tt.args.head, tt.args.pos)
-			l.Next = p
+			if tt.args.pos != -1 {
+				l := findLast(tt.args.head)
+				p := findPos(tt.args.head, tt.args.pos)
+				l.Next = p
+			}
 			if got := hasCycle(tt.args.head); got != tt.want {
 				t.Errorf("hasCycle() = %v, want %v", got, tt.want)
 			}
