@@ -56,7 +56,31 @@ package main
  * }
  */
 func isSymmetric(root *TreeNode) bool {
-	return false
+	if root == nil {
+		return true
+	}
+
+	return isPair(root.Left, root.Right)
+}
+
+func isPair(left, right *TreeNode) bool {
+	if left == nil && right == nil {
+		return true
+	}
+	// 両方nilはありえないので片方ずつみればよい
+	if right == nil || left == nil {
+		return false
+	}
+
+	if right.Val != left.Val {
+		return false
+	}
+
+	if !isPair(right.Left, left.Right) {
+		return false
+	}
+
+	return isPair(right.Right, left.Left)
 }
 
 // @lc code=end
