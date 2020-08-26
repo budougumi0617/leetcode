@@ -47,7 +47,22 @@ package main
  * }
  */
 func maxDepth(root *TreeNode) int {
-	return 0
+	return seek(root, 1)
+}
+
+func seek(current *TreeNode, depth int) int {
+	if current == nil {
+		return depth - 1
+	}
+
+	ld := seek(current.Left, depth+1)
+	rd := seek(current.Right, depth+1)
+
+	if ld < rd {
+		return rd
+	}
+
+	return ld
 }
 
 // @lc code=end
