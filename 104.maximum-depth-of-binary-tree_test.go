@@ -29,7 +29,9 @@ func Test_maxDepth(t *testing.T) {
 			want: 3,
 		},
 	}
+
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			if got := maxDepth(tt.args.root); got != tt.want {
 				t.Errorf("maxDepth() = %v, want %v", got, tt.want)
