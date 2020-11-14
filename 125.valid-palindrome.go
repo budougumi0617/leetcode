@@ -73,7 +73,8 @@ func trim(s string) []byte {
 	return b
 }
 
-func isPalindrome(s string) bool {
+// func isPalindrome(s string) bool {
+func isPalindrome125(s string) bool {
 	if len(s) < 2 {
 		return true
 	}
