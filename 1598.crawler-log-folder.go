@@ -79,8 +79,32 @@ package main
  */
 
 // @lc code=start
+
+const (
+	current = "./"
+	parent  = "../"
+)
+
+func walk(logs []string, pos, layer int) int {
+	if logs[pos] == current {
+		return layer
+	}
+	if logs[pos] == parent {
+		if layer == 0 {
+			return 0
+		}
+		return layer - 1
+	}
+	return layer + 1
+}
+
 func minOperations(logs []string) int {
-	return 0
+	n := len(logs)
+	var layer int
+	for i := 0; i < n; i++ {
+		layer = walk(logs, i, layer)
+	}
+	return layer
 }
 
 // @lc code=end
