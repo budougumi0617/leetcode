@@ -85,24 +85,28 @@ const (
 	parent  = "../"
 )
 
-func walk(logs []string, pos, layer int) int {
+func walk(logs []string, pos, max, layer int) (int, int) {
 	if logs[pos] == current {
-		return layer
+		return pos, layer
 	}
 	if logs[pos] == parent {
 		if layer == 0 {
-			return 0
+			return pos, 0
 		}
-		return layer - 1
+		return pos, layer - 1
 	}
-	return layer + 1
+	if pos+1 < max && logs[pos+1] == parent {
+		return pos + 1, layer
+	}
+	return pos, layer + 1
 }
 
 func minOperations(logs []string) int {
 	n := len(logs)
-	var layer int
-	for i := 0; i < n; i++ {
-		layer = walk(logs, i, layer)
+	var i, layer int
+	for i < n {
+		i, layer = walk(logs, i, n, layer)
+		i++
 	}
 	return layer
 }
