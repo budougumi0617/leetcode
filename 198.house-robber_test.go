@@ -10,6 +10,8 @@ func Test_rob(t *testing.T) {
 	}{
 		{name: "Example1", nums: []int{1, 2, 3, 1}, want: 4},
 		{name: "Example2", nums: []int{2, 7, 9, 3, 1}, want: 12},
+		{name: "Complex", nums: []int{100, 2, 4, 2000, 5}, want: 2100},
+		{name: "Complex2", nums: []int{10, 2, 150, 200, 150}, want: 310},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
