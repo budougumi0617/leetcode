@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 /*
  * @lc app=leetcode id=14 lang=golang
  *
@@ -49,7 +51,23 @@ package main
 
 // @lc code=start
 func longestCommonPrefix(strs []string) string {
-	return ""
+	if len(strs) == 0 {
+		return ""
+	}
+	ans := strs[0]
+	if len(strs) == 1 {
+		return ans
+	}
+
+	i := 0
+	for ; i < len(ans); i++ {
+		for _, str := range strs[1:] {
+			if !strings.HasPrefix(str, ans[:i]) {
+				return ans[:i-1]
+			}
+		}
+	}
+	return ans
 }
 
 // @lc code=end
