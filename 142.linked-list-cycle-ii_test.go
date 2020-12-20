@@ -36,7 +36,7 @@ func Test_detectCycle(t *testing.T) {
 	if exTwoWant.Val != 1 {
 		t.Fatalf("exTwoWant.Val is not 1, got %d", exTwoWant.Val)
 	}
-	exOneList.Next.Next = exTwoWant
+	exTwoList.Next.Next = exTwoWant
 
 	tests := [...]struct {
 		name string

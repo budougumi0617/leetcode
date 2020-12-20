@@ -75,6 +75,20 @@ package main
  * }
  */
 func detectCycle(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	m := map[*ListNode]bool{}
+	for {
+		if head.Next == nil {
+			break
+		}
+		if m[head.Next] {
+			return head.Next
+		}
+		m[head] = true
+		head = head.Next
+	}
 	return nil
 }
 
