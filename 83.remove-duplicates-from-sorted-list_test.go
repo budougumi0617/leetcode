@@ -64,6 +64,9 @@ func Test_deleteDuplicates(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got := deleteDuplicates(tt.head)
 			want := tt.want
+			if want == nil && got == nil {
+				return
+			}
 			for {
 				if want.Next == nil && got.Next == nil {
 					break
